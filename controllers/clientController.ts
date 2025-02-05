@@ -7,25 +7,20 @@ function index(req: Request, res: Response, next: any) {
 function produto(req: Request, res: Response, next: any) {
   var produtos = [
     {
-      id: 1,
-      produto: "Memória Ram",
+      nome: "Memória Ram",
       descricao: "16GB",
     },
     {
-      id: 2,
-      produto: "Placa de video",
+      nome: "Placa de video",
       descricao: "8GB",
     },
     {
-      id: 3,
-      produto: "Monitor",
+      nome: "Monitor",
       descricao: "fullHD",
     },
   ];
-  res.send(
-    `<h1>${produtos[parseInt(req.params.id)].produto}</h1> 
-      <p>${produtos[parseInt(req.params.id)].descricao}</p>`
-  );
+  var produto = produtos[parseInt(`${req.params.id}`)];
+  res.render("produto", { produto: produto });
 }
 
 export default { index, produto };
