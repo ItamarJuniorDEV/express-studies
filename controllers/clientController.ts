@@ -1,7 +1,10 @@
 import { Request, Response } from "express";
+import { IClients } from "../models/clients";
+import ClientRepository from "../models/clientsModel";
 
-function index(req: Request, res: Response, next: any) {
-  res.render("index");
+async function index(req: Request, res: Response, next: any) {
+  const clients = await ClientRepository.findAll();
+  res.json(clients);
 }
 
 function produto(req: Request, res: Response, next: any) {
