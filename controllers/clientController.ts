@@ -4,7 +4,7 @@ import ClientRepository from "../models/clientsModel";
 
 async function index(req: Request, res: Response, next: any) {
   const clients = await ClientRepository.findAll();
-  res.json(clients);
+  res.render("index", { clients: clients });
 }
 
 function produto(req: Request, res: Response, next: any) {
