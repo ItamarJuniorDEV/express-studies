@@ -1,21 +1,23 @@
 extends app.pug 
-block titulo 
-    
-      title Lista de Clientes
-block conteudo
-      h1 Lista de clientes
-      table.table 
-            thead
-                tr
-                    th(scope='col') ID
-                    th(scope='col') Nome
-                    th(scope='col') Email
-                    th(scope='col') Ações
-            tbody
-                for cliente, clientes in clients
-                    tr
-                        th(scope='row') #{cliente.id}
-                        td 
-                            a(href=`/clients/${cliente.id}`) #{cliente.name}
-                        td #{cliente.email}
 
+block titulo
+    title Lista de Clientes
+
+block conteudo
+    h1 Lista de clientes
+    table.table 
+        thead
+            tr
+                th(scope='col') ID
+                th(scope='col') Nome
+                th(scope='col') Email
+                th(scope='col') Ações
+        tbody
+            for cliente in clients
+                tr
+                    th(scope='row') #{cliente.id}
+                    td 
+                        a(href=`/clients/${cliente.id}`) #{cliente.name}
+                    td #{cliente.email}
+
+    a(href="/clients/create").btn.btn-success Novo Cliente  

@@ -12,8 +12,20 @@ async function show(req: Request, res: Response, next: any) {
   res.render("show", { client: client });
 }
 
-async function create(req: Request, res: Response, next: any) {
+function create(req: Request, res: Response, next: any) {
   res.render("create");
 }
 
-export default { index, show, create };
+async function store(req: Request, res: Response, next: any) {
+  try {
+    await ClientRepository.create(
+      req.body as Partial<{ name: string; email: string }>
+    );
+    res.redirect("/clients");
+  } catch (error) {
+    console.log(error);
+    res.status(500).end();
+  }
+}
+
+export default { index, show, create, store };
