@@ -7,23 +7,9 @@ async function index(req: Request, res: Response, next: any) {
   res.render("index", { clients: clients });
 }
 
-function produto(req: Request, res: Response, next: any) {
-  var produtos = [
-    {
-      nome: "Memória Ram",
-      descricao: "16GB",
-    },
-    {
-      nome: "Placa de video",
-      descricao: "8GB",
-    },
-    {
-      nome: "Monitor",
-      descricao: "fullHD",
-    },
-  ];
-  var produto = produtos[parseInt(`${req.params.id}`)];
-  res.render("produto", { produto: produto });
+async function show(req: Request, res: Response, next: any) {
+  const client = await ClientRepository.findByPk(req.params.id);
+  res.render("show", { client: client });
 }
 
-export default { index, produto };
+export default { index, show };
