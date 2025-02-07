@@ -12,4 +12,8 @@ async function show(req: Request, res: Response, next: any) {
   res.render("show", { client: client });
 }
 
-export default { index, show };
+async function create(req: Request, res: Response, next: any) {
+  res.render("create");
+}
+
+export default { index, show, create };
