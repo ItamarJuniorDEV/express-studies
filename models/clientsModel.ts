@@ -1,19 +1,30 @@
 import db from "../db";
-import sequelize from "sequelize";
+import { DataTypes, Model } from "sequelize";
 
-export default db.define("clients", {
-  id: {
-    type: sequelize.INTEGER.UNSIGNED,
-    autoIncrement: true,
-    primaryKey: true,
-    allowNull: false,
+class Client extends Model {}
+
+Client.init(
+  {
+    id: {
+      type: DataTypes.INTEGER.UNSIGNED,
+      autoIncrement: true,
+      primaryKey: true,
+      allowNull: false,
+    },
+    name: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    email: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
   },
-  name: {
-    type: sequelize.STRING,
-    allowNull: false,
-  },
-  email: {
-    type: sequelize.STRING,
-    allowNull: false,
-  },
-});
+  {
+    sequelize: db,
+    modelName: "clients",
+    timestamps: true, // ⬅️ Agora o Sequelize sabe que createdAt e updatedAt existem
+  }
+);
+
+export default Client;

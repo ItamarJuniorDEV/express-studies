@@ -5,7 +5,7 @@ block titulo
 
 block conteudo
   h1 Atualizar cliente
-  form(action="" method="")
+  form(action=`/clients/${client.id}?_method=PUT` method='POST')
     .mb-3
       label.form-label(for="name") Nome
       input#name.form-control(type="text" value=`${client.name}` required name="name" placeholder="Digite o nome")

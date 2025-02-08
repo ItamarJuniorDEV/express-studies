@@ -27,7 +27,6 @@ async function store(req: Request, res: Response, next: any) {
     res.status(500).end();
   }
 }
-
 async function edit(req: Request, res: Response, next: any) {
   try {
     const client = await ClientRepository.findByPk(req.params.id);
@@ -41,5 +40,18 @@ async function edit(req: Request, res: Response, next: any) {
     res.status(500).end();
   }
 }
+async function update(req: Request, res: Response, next: any) {
+  try {
+    await ClientRepository.update(req.body as IClients, {
+      where: {
+        id: req.params.id,
+      },
+    });
+    res.redirect(`/clients/`);
+  } catch (error) {
+    console.log(error);
+    res.status(500).end();
+  }
+}
 
-export default { index, show, create, store, edit };
+export default { index, show, create, store, edit, update };

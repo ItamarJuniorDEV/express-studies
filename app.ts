@@ -1,15 +1,16 @@
 import express from "express";
 import clientsRouter from "./routes/clients";
+import methodOverride from "method-override";
 import db from "./db";
 
 const app = express();
 const port = parseInt(`${process.env.PORT}`);
 
+app.use(express.urlencoded({extended: true }));
+app.use(methodOverride("_method"));
+app.use(clientsRouter);
 app.set("view engine", "pug");
 app.set("views", "./views");
-
-app.use(express.urlencoded({ extended: true }));
-app.use(clientsRouter);
 
 db.sync()
   .then(() => {
