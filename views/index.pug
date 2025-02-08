@@ -21,4 +21,6 @@ block conteudo
                     td #{cliente.email}
                     td 
                         a(href=`/clients/${cliente.id}/edit`).btn.btn-primary Editar
+                        form(action=`/clients/${cliente.id}?_method=DELETE` method="POST" style='display: inline')
+                            button(type="submit" value="submit" onclick='return confirm("Tem certeza que deseja apagar?")').btn.btn-danger Excluir
     a(href="/clients/create").btn.btn-success Novo Cliente  

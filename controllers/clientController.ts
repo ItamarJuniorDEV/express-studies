@@ -54,4 +54,18 @@ async function update(req: Request, res: Response, next: any) {
   }
 }
 
-export default { index, show, create, store, edit, update };
+async function destroy(req: Request, res: Response, next: any) {
+  try {
+    await ClientRepository.destroy({
+      where: {
+        id: req.params.id,
+      },
+    });
+    res.redirect("/clients");
+  } catch (error) {
+    console.log(error);
+    res.status(500).end();
+  }
+}
+
+export default { index, show, create, store, edit, update, destroy };
