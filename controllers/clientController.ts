@@ -28,4 +28,18 @@ async function store(req: Request, res: Response, next: any) {
   }
 }
 
-export default { index, show, create, store };
+async function edit(req: Request, res: Response, next: any) {
+  try {
+    const client = await ClientRepository.findByPk(req.params.id);
+    if (client === null) {
+      res.status(404).send("Não encontrado");
+    } else {
+      res.status(200).render("edit", { client: client });
+    }
+  } catch (error) {
+    console.log(error);
+    res.status(500).end();
+  }
+}
+
+export default { index, show, create, store, edit };

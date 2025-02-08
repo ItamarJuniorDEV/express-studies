@@ -19,5 +19,6 @@ block conteudo
                     td 
                         a(href=`/clients/${cliente.id}`) #{cliente.name}
                     td #{cliente.email}
-
+                    td 
+                        a(href=`/clients/${cliente.id}/edit`).btn.btn-primary Editar
     a(href="/clients/create").btn.btn-success Novo Cliente  
