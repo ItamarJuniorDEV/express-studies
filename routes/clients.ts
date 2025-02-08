@@ -3,6 +3,7 @@ import clientsController from "../controllers/clientController";
 
 const router = Router();
 
+router.get("/", clientsController.home);
 router.get("/clients", clientsController.index);
 router.get("/clients/create", clientsController.create);
 router.post("/clients", clientsController.store);
